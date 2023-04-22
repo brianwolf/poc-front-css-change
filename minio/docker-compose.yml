@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+    minio:
+        image: minio/minio
+        restart: on-failure:3
+        environment:
+            - MINIO_ACCESS_KEY=adminminio
+            - MINIO_SECRET_KEY=adminminio
+        volumes:
+            - minio:/data
+        ports:
+            - 9000:9000
+        command: server /data
+
+volumes:
+    minio:
+        name: minio
+        external: false
